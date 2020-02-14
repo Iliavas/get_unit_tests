@@ -6,7 +6,7 @@ with this util you can make simple unittests
 ### Getting start
 
 to start you should execute this command in the cmd
-`pip install -r requirenments.txt`
+`pip install -r requirements.txt`
 
 ***
 
