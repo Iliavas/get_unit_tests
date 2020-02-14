@@ -2,13 +2,10 @@ import re
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--func_way", type=str)
-parser.add_argument("--mark_way", type=str, default="markup.txt")
+parser.add_argument("--func_path", type=str)
+parser.add_argument("--mark_path", type=str, default="markup.txt")
 parser.add_argument("--save_test", type=str, default="tests")
 args = parser.parse_args()
-
-def func(a, b):
-    return a ** 2 + 2 * a * b + b ** 2
 
 template = '''import unittest
 
@@ -25,7 +22,7 @@ meta_ = re.sub(r"\t", "", meta_)
 res_prepare = meta_.split("\n")
 res = ""
 for i in res_prepare[1:]:
-    data = re.sub(r":","", res_prepare[0]) + "(" + re.search(r"(\d+, \d+)", i)[0] + ")"
+    data = re.sub(r":","", res_prepare[0]) + "(" + ', '.join(re.findall(r"\d+", re.search(r"\(.*\)", i)[0])) + ")"
     result = re.sub(re.search(r"(\d+, \d+)", i)[0], " ", i)
     result = re.search(r"\d+", result)[0]
     res += "self.assertEqual({}, {})".format(data, result) + "\n        "
