@@ -13,7 +13,7 @@ to start you should execute this command in the cmd
 h3 how to use
 
 to use tis util you should make special mark file with syntax like this:
-`func_you_want_to_test:
- (func_params), func_result
- (another_func_params), another_func_result
+`func_you_want_to_test: \n
+ (func_params), func_result \n
+ (another_func_params), another_func_result \n
  `
