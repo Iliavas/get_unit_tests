@@ -15,20 +15,21 @@ class Main(unittest.TestCase):
 try: unittest.main()
 except: pass'''
 
-meta_ = open(args.mark_way, "r").read()
+meta_ = open(args.mark_path, "r").read()
 
 meta_ = re.sub(r"\t", "", meta_)
 
 res_prepare = meta_.split("\n")
 res = ""
 for i in res_prepare[1:]:
-    data = re.sub(r":","", res_prepare[0]) + "(" + ', '.join(re.findall(r"\d+", re.search(r"\(.*\)", i)[0])) + ")"
-    result = re.sub(re.search(r"(\d+, \d+)", i)[0], " ", i)
-    result = re.search(r"\d+", result)[0]
+    data = re.sub(r":","", res_prepare[0])  + ', '.join(re.findall(r"[^,]+", re.search(r"\(.*\)", i)[0])) 
+    print(i)
+    result = re.sub(r"\(.+\)", "", i)
+    result = re.search(r"[^,]+", result)[0]
     res += "self.assertEqual({}, {})".format(data, result) + "\n        "
 
 result = re.sub(r"\[T]", res[:-2], template)
-result = "from " + args.func_way + " import " + re.sub(r":", "", res_prepare[0]) + "\n" + result
+result = "from " + args.func_path + " import " + re.sub(r":", "", res_prepare[0]) + "\n" + result
 
 with open(args.save_test + ".py", "w") as file:
 	file.write(result)
