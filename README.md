@@ -3,14 +3,14 @@ with this util you can make simple unittests
 
 ***
 
-### h3 Getting start
+### Getting start
 
 to start you should execute this command in the cmd
 `pip install -r requirenments.txt`
 
 ***
 
-### h3 how to use
+### how to use
 
 to use tis util you should make special mark file with syntax like this:
 ```
